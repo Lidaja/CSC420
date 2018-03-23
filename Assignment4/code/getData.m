@@ -99,7 +99,7 @@ switch whatdata
            end;
            data.im = imgdata.im;
         end;
-    case {'detector-car', 'detector-person', 'detector-pedestrian', 'detector-cyclist'}
+    case {'detector-car', 'detector-person', 'detector-pedestrian', 'detector-cyclist','detector-bicycle'}
         cls = strrep(whatdata, 'detector-', '');
         files = dir(fullfile(DETECTOR_DIR, sprintf('%s_final*.mat', cls)));
         if isempty(files)

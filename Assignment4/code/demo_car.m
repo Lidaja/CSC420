@@ -26,3 +26,4 @@ end;
 showboxesMy(im, reduceboxes(model, bs(top,:)), col);
 fprintf('detections:\n');
 ds = ds(top, :);
+ds

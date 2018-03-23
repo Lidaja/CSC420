@@ -1,0 +1,229 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{subcaption}
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[]{algorithm2e}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassTime): \hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Perl, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.pl}
+\end{itemize}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Question \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Assignment\ \#3} % Assignment title
+\newcommand{\hmwkDueDate}{Wednesday,\ Dec\ 6,\ 2017} % Due date
+\newcommand{\hmwkClass}{CSC485} % Course/class
+\newcommand{\hmwkClassTime}{L0201} % Class/lecture time
+\newcommand{\hmwkAuthorName}{Liam Jackson} % Your name
+\newcommand{\hmwkAuthorCDF}{g4jackso} % Your name
+\newcommand{\hmwkAuthorSN}{1000691281} % Your name
+\newcommand{\forconda}{$i=floor(n/2)$ \KwTo $size(image Columns + floor(n/2)$}
+\newcommand{\forcondb}{$j=floor(n/2)$ \KwTo $size(image Rows + floor(n/2)$}
+\newcommand{\forcondc}{$u=0$ \KwTo $n$}
+\newcommand{\forcondd}{$v=0$ \KwTo $n$}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+%\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+\clearpage
+%----------------------------------------------------------------------------------------
+%	Question 1
+%----------------------------------------------------------------------------------------
+
+% To have just one problem per page, simply put a \clearpage after each problem
+
+\begin{homeworkProblem}
+a) \begin{center}
+    \begin{tabular}{  l | l | l | l }
+    stack & buffer & new dependency & transition  \\ \hline
+    ROOT & Nadia, rode, the, old, donkey, with, dexterity &  & Initial Config  \\ 
+    ROOT, Nadia & rode, the, old, donkey, with, dexterity &  & SHIFT  \\ 
+    ROOT, Nadia, rode & the, old, donkey, with, dexterity &  & SHIFT  \\ 
+    ROOT, rode & the, old, donkey, with, dexterity & rode $^{nsubj}_{\rightarrow}$ Nadia & LEFT-ARC  \\ 
+    ROOT, rode, the & old, donkey, with, dexterity &  & SHIFT  \\ 
+    ROOT, rode, the, old & donkey, with, dexterity &  & SHIFT  \\ 
+    ROOT, rode, the, old, donkey & with, dexterity &  & SHIFT  \\ 
+    ROOT, rode, the, donkey & with, dexterity & donkey $^{amod}_{\rightarrow}$ old & LEFT-ARC  \\ 
+    ROOT, rode, donkey & with, dexterity & donkey $^{det}_{\rightarrow}$ the & LEFT-ARC  \\ 
+    ROOT, rode & with, dexterity & rode $^{dobj}_{\rightarrow}$ donkey & RIGHT-ARC  \\ 
+    ROOT, rode, with & dexterity &  & SHIFT  \\ 
+    ROOT, rode, with, dexterity & &  & SHIFT  \\ 
+    ROOT, rode, with & & with $^{pobj}_{\rightarrow}$ dexterity & RIGHT-ARC  \\ 
+    ROOT, rode & & rode $^{prep}_{\rightarrow}$ with & RIGHT-ARC  \\ 
+    ROOT & & ROOT $^{prep}_{\rightarrow}$ rode & RIGHT-ARC  \\ 
+    \end{tabular}
+\end{center}
+ b) A sentence containg $n$ words will be parsed in $2n$ steps. This is due to for every word, it will require one shift step, and an eventual arc step. The ordering of shifts and arcs may vary, but every word requires a shift an arc eventually in its parse.\\
+c) When the parsing mechanism for projective dependency tree specifies transition, we are very clear on what word depends on another. This is because a left arc means the last word on the stack depends on the second last word and a right arc means the second last word on the stack depends on the last word. For a non-projective dependency tree, a word may depend on another word not adjacent to it in the stack, which for our purposes, cannot be done with the parsing algorithm.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+b) To be frank, my results were not as expected. I've tried various tweaks to the hyperparameters to no luck. Some were slightly better than the default parameters but not up to par with what the assignment expects. I'm evidently making some mistake somewhere in my code, but I cannot locate it, so for this report, I'll just use the base hyperparameters. This yields about 0.56 on LAS and 0.65 on UAS after 10 epochs with final cross entropy of 0.38
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
